@@ -16,55 +16,42 @@
 
 ## **🧪 Methodology**
 
-### **1. Data Preprocessing**
-- Parsed `date_time` and set it as index.
-- One-hot encoded:
-  - `is_holiday`
-  - `weather_type`
-  - `weather_description`
-- Scaled all numerical features using `StandardScaler`.
+**Data Preprocessing**
 
-### **2. Exploratory Data Analysis (EDA)**
-- Plotted:
-  - **Hourly traffic volume**
-  - **Traffic on holidays vs. non-holidays**
-  - **Traffic by weather conditions**
-  - **Traffic by day of the week**
+- Parsed and indexed by `date_time`.  
+- One-hot encoded categorical features (`is_holiday`, `weather_type`, `weather_description`).  
+- Scaled numerical features using `StandardScaler`.  
 
-### **3. Sequence Creation**
-- Created sequences using:
-  - **n_past = 14** (previous 14 time steps)
-  - **n_future = 1** (predicting next time step)
-- Split into:
-  - **trainX** (input features)
-  - **trainY** (target variable)
+**Exploratory Data Analysis (EDA)**
 
-### **4. LSTM Model Building**
-- Sequential LSTM model:
-  - Two LSTM layers (64 and 32 units).
-  - Dropout for regularization.
-  - Dense layer for output.
-- Compiled using:
-  - **Optimizer**: Adam
-  - **Loss**: Mean Squared Error (MSE)
+- Visualized hourly traffic, holiday vs. non-holiday traffic, weather impact, and day-of-week patterns.  
 
-### **5. Model Training**
-- Trained with:
-  - **Epochs**: 5
-  - **Batch Size**: 16
-  - **Validation Split**: 10%
-- Plotted training and validation loss.
+**Sequence Creation**
 
-### **6. Evaluation**
-- Predicted on test data (scaled and inverse transformed).
-- Calculated:
-  - **MAE (Mean Absolute Error)**
-  - **RMSE (Root Mean Squared Error)**
-- Plotted predictions vs. actual values.
+- Created sequences with 14 past steps to predict 1 future step.  
+- Split data into input features (`trainX`) and target variable (`trainY`).  
 
-### **7. Future Prediction**
-- Forecasted traffic on test dataset.
-- Used rolling prediction with model outputs as inputs for next step.
+**LSTM Model Building**
+
+- Built sequential model with two LSTM layers (64 & 32 units), dropout, and output dense layer.  
+- Compiled with Adam optimizer and MSE loss.  
+
+**Model Training**
+
+- Trained for 5 epochs, batch size 16, with 10% validation split.  
+- Monitored training and validation loss.  
+
+**Evaluation**
+
+- Predicted on test set, inverse transformed outputs.  
+- Calculated MAE and RMSE.  
+- Achieved **29.8% improvement in MAE** and **28.8% improvement in RMSE** over the baseline model.  
+- Plotted predicted vs. actual traffic.  
+
+**Future Prediction**
+
+- Performed rolling forecasts using model outputs for subsequent inputs.  
+
 
 ## **📊 Results**
 - Visuals show close match between predictions and actuals.
